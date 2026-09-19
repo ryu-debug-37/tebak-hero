@@ -407,16 +407,16 @@
 <div class="wrap">
 
   <div class="hero">
-    <div class="kicker">LAND OF DAWN · TRIVIA</div>
+    <div class="kicker">LAND OF DAWN </div>
     <h1>🎮 Tebak Hero ML</h1>
-    <p>Seberapa hafal lu sama hero ML? 😈</p>
+    <p>Seberapa hafal km sama hero ML? 😈</p>
   </div>
 
   <div class="topbar">
     <span id="number">Soal 1 / 10</span>
     <span class="streak">🔥 Streak: <span id="streakNum">0</span></span>
   </div>
-  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-track"><div class="progress-fill" id="progressFaill"></div></div>
 
   <div class="panel" id="quizPanel">
     <div class="clue-slots" id="clues"></div>
@@ -443,7 +443,7 @@
   <div class="panel finish" id="finishPanel" style="display:none;">
     <div class="rank-badge" id="finishBadge">🥉</div>
     <div class="rank-title" id="finishTitle">Warrior</div>
-    <div class="rank-sub" id="finishSub">Lumayan tapi kudu belajar lagi 😅</div>
+    <div class="rank-sub" id="finishSub">Lumayan tapi harusw belajar lagi 😅</div>
     <div class="final-score" id="finishScore">Score: 0 / 0</div>
     <button id="restartBtn">🔁 MAIN LAGI</button>
     <button id="waBtn">💬 BALAS KE WA</button>
@@ -670,8 +670,8 @@ function checkAnswer(selected, clickedButton, evt){
     streakEl.textContent = streak;
 
     resultEl.className = "correct-text";
-    resultEl.innerHTML = `🎉 BENARRR BROKK!! 🔥 <span class="points-badge">+${points} poin</span>`;
-
+    resultEl.innerHTML = `🎉 YEYY qBENARRR!! 🔥 <span class="points-badge">+${points} poin</span>`;
+w
     if(evt) spawnPop(evt.clientX, evt.clientY, `+${points}`, '#3ddc84');
   } else {
     clickedButton.classList.add("wrong");
