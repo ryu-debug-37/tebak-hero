@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Tebak Hero ML</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #111827, #1e293b);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .game {
+      width: 100%;
+      max-width: 450px;
+      background: rgba(255,255,255,0.08);
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      opacity: 0.7;
+      margin-bottom: 25px;
+    }
+
+    .clue {
+      background: rgba(0,0,0,0.2);
+      padding: 15px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .clue span {
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      margin-top: 20px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #checkBtn {
+      background: white;
+      color: #111827;
+    }
+
+    #nextBtn {
+      background: #334155;
+      color: white;
+      display: none;
+    }
+
+    #result {
+      margin-top: 18px;
+      min-height: 25px;
+      font-weight: bold;
+    }
+
+    .score {
+      margin-top: 20px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="game">
+
+    <h1>🎮 Tebak Hero ML</h1>
+
+    <p class="subtitle">
+      Bisa nebak hero dari clue-nya? 😈
+    </p>
+
+    <div id="clues"></div>
+
+    <input
+      type="text"
+      id="answer"
+      placeholder="Ketik nama hero..."
+    >
+
+    <button id="checkBtn">
+      🔍 CHECK
+    </button>
+
+    <button id="nextBtn">
+      ➡️ SOAL BERIKUTNYA
+    </button>
+
+    <div id="result"></div>
+
+    <div class="score">
+      🏆 Score: <span id="score">0</span>
+    </div>
+
+  </div>
+
+
+  <script>
+
+    // =========================
+    // DATA SOAL
+    // =========================
+
+    const questions = [
+
+      {
+        answer: "fanny",
+        clues: [
+          "🗡️ Role: Assassin",
+          "🪢 Terkenal dengan kabelnya",
+          "⚡ Mobilitasnya sangat tinggi"
+        ]
+      },
+
+      {
+        answer: "estes",
+        clues: [
+          "💚 Role: Support",
+          "❤️ Bisa memberikan heal kepada tim",
+          "👑 Dikenal sebagai Moon Elf King"
+        ]
+      },
+
+      {
+        answer: "franco",
+        clues: [
+          "🛡️ Role: Tank",
+          "🪝 Punya hook yang menyebalkan",
+          "❄️ Berasal dari Northern Vale"
+        ]
+      },
+
+      {
+        answer: "gusion",
+        clues: [
+          "🗡️ Role: Assassin",
+          "🔪 Menggunakan banyak dagger",
+          "⚡ Combo-nya sangat cepat"
+        ]
+      },
+
+      {
+        answer: "layla",
+        clues: [
+          "🏹 Role: Marksman",
+          "🔫 Menggunakan senjata bernama Malefic Gun",
+          "🎯 Bisa menyerang dari jarak sangat jauh"
+        ]
+      }
+
+    ];
+
+
+    // =========================
+    // VARIABLE
+    // =========================
+
+    let currentQuestion = 0;
+    let score = 0;
+
+
+    // =========================
+    // ELEMENT HTML
+    // =========================
+
+    const clues = document.getElementById("clues");
+    const answer = document.getElementById("answer");
+    const result = document.getElementById("result");
+    const scoreText = document.getElementById("score");
+
+    const checkBtn = document.getElementById("checkBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+
+    // =========================
+    // TAMPILKAN SOAL
+    // =========================
+
+    function showQuestion() {
+
+      const question = questions[currentQuestion];
+
+      clues.innerHTML = "";
+
+      question.clues.forEach(function(clue) {
+
+        const div = document.createElement("div");
+
+        div.className = "clue";
+
+        div.innerHTML = clue;
+
+        clues.appendChild(div);
+
+      });
+
+      answer.value = "";
+      result.textContent = "";
+
+      checkBtn.style.display = "block";
+      nextBtn.style.display = "none";
+
+      answer.focus();
+    }
+
+
+    // =========================
+    // CEK JAWABAN
+    // =========================
+
+    checkBtn.addEventListener("click", function() {
+
+      const userAnswer = answer.value
+        .toLowerCase()
+        .trim();
+
+      const correctAnswer =
+        questions[currentQuestion].answer;
+
+      if (userAnswer === correctAnswer) {
+
+        result.textContent =
+          "🎉 BENARRR BROKK!! 🔥";
+
+        score++;
+
+        scoreText.textContent = score;
+
+      } else {
+
+        result.textContent =
+          "❌ SALAHH 😭 Coba lagi!";
+
+        return;
+      }
+
+      checkBtn.style.display = "none";
+      nextBtn.style.display = "block";
+
+    });
+
+
+    // =========================
+    // SOAL BERIKUTNYA
+    // =========================
+
+    nextBtn.addEventListener("click", function() {
+
+      currentQuestion++;
+
+      if (currentQuestion >= questions.length) {
+
+        clues.innerHTML =
+          "<h2>🏆 QUIZ SELESAI!</h2>";
+
+        result.textContent =
+          "Score kamu: " + score + "/" + questions.length;
+
+        answer.style.display = "none";
+        checkBtn.style.display = "none";
+        nextBtn.style.display = "none";
+
+        return;
+      }
+
+      showQuestion();
+
+    });
+
+
+    // Jalankan soal pertama
+    showQuestion();
+
+  </script>
+
+</body>
+</html>a
