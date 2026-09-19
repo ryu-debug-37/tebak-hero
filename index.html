@@ -462,7 +462,7 @@ const questions = [
   {
     answer: "estes",
     clues: [
-      "🌙 skill 2 nya ngeslow pergerakan lawan .",
+      "🌙 skill 2 nya ngeslow pergerakan lawan.",
       "💚 dia seorang healer, gendernya cwk 😜.",
       "✨ klo pke hero ini, mainnya harus ngumpul truss."
     ],
@@ -499,8 +499,8 @@ const questions = [
     answer: "ling",
     clues: [
       "🗡️ Menggunakan Menggunakan pedang sebagai senjata utama.",
-      "⚡ Mobilitasnya membuatnya sering muncul tiba-tiba dari arah yang tidak terduga.",
-      "🏯 Sangat identik dengan kemampuan bergerak di atas dinding.",
+      "⚡ sering muncul tiba-tiba1.",
+      "🏯 identik dengan merayap kek cicak.",
     ],
   options: ["Ling","Hayabusa","Fanny", "Lancelot"]
   },
@@ -525,9 +525,9 @@ const questions = [
   {
     answer: "mathilda",
     clues: [
-      "🪽 bisa jemput temenya .",
-      "🌿 ultinya terbang .",
-      "✨ Tebak woii, dah jelas ga sii"
+      "🪽 bisa jemput temenya.",
+      "🌿 ultinya terbang.",
+      "✨ Tebak woii, dah jelas ga sii."
     ],
     options: ["Mathilda","Rafaela","Floryn","Angela"]
   },
@@ -536,7 +536,7 @@ const questions = [
     clues: [
       "🌑 identik dengan kegelapan.",
       "👁️ bisa matiin lampu .",
-      "☠️ julukan nya kecoa. 1"
+      "☠️ julukan nya kecoa."
     ],
     options: ["Helcurt","Saber","Natalia","Hanzo"]
   }
@@ -651,7 +651,7 @@ function checkAnswer(selected, clickedButton, evt){
     streakEl.textContent = streak;
 
     resultEl.className = "correct-text";
-    resultEl.innerHTML = `🎉 BENARRR BROKK!! 🔥 <span class="points-badge">+${points} poin</span>`;
+    resultEl.innerHTML = `🎉 YEYY BENARRR !! 🔥 <span class="points-badge">+${points} poin</span>`;
 
     if(evt) spawnPop(evt.clientX, evt.clientY, `+${points}`, '#3ddc84');
   } else {
